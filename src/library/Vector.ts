@@ -165,6 +165,20 @@ class Vector{
             this.set_w(val);
         }
     }
+    public limit = (min:number,max:number)=>{
+        if(this.x>max) this.x=max;
+        if(this.y>max) this.y=max;
+        if(this.z>max) this.z=max;
+        if(this.x<min) this.x=min;
+        if(this.y<min) this.y=min;
+        if(this.z<min) this.z=min;
+        this.recalib();
+
+    }
+
+    public dist = (vec:Vector)=>{
+        return(Math.sqrt((this.x-vec.x)**2 + (this.y-vec.y)**2 + (this.z-vec.z)**2 + (this.w-vec.w)**2))
+    }
 }
 
 export default Vector;

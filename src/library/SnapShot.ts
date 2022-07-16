@@ -25,6 +25,10 @@ class SnapShot{
      */
     public capture = ()=>{
         this.canvas.set_image(this.camera.video);
+        this.draw_rgb();
+    }
+    public draw_rgb = ()=>{
+        this.canvas.draw_rgb(this.camera.video);
     }
 }
 
