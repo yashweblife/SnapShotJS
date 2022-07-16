@@ -1,5 +1,8 @@
 import Vector from "./Vector"
 import Camera from "./Camera"
+/**
+ * The Canvas class allows you to abstract away most of the tedious parts of using the canvas element.
+ */
 class Canvas{
     private dom:HTMLCanvasElement;
     public context:CanvasRenderingContext2D;
@@ -14,6 +17,11 @@ class Canvas{
     constructor(){
 
     }
+    /**
+     * * Initialize the canvas. Creates a canvas automatically
+     * ! It will require a dom element to plug the canvas into
+     * @param  {HTMLElement=document.body} dom
+     */
     public init_create = (dom:HTMLElement = document.body)=>{
         const width=300;
         const height=300;
@@ -25,7 +33,12 @@ class Canvas{
         this.context = this.dom.getContext('2d') as CanvasRenderingContext2D;
         dom.append(this.dom);
     }
-
+    /**
+     * * Initilize the canvas. Pass it a canvas element.
+     * @param  {HTMLCanvasElement} dom
+     * @param  {number=300} width
+     * @param  {number=300} height
+     */
     public init = (dom:HTMLCanvasElement,width:number=300, height:number=300)=>{
         this.dom=dom;
         this.dom.width=width;
@@ -87,14 +100,20 @@ class Canvas{
     public clear = ()=>{
         this.context.clearRect(0, 0, this.xlim, this.ylim)
     }
-
+    /**
+     * Provide a video feed to it and it will set the image to the canvas
+     * @param  {HTMLVideoElement} vid
+     */
     public set_image = (vid:HTMLVideoElement)=>{
         let minSize = Math.min(vid.videoWidth, vid.videoHeight);
         let sx = (vid.videoWidth-minSize)/2;
         let sy = (vid.videoHeight-minSize)/2;
         this.context.drawImage(vid,sx,sy,minSize,minSize,0,0,this.xlim,this.ylim)
     }
-
+    /**
+     * Breaks down the canvas into pixels and returns a 2D Vector array. {@link Vector}
+     * @param  {HTMLVideoElement} vid
+     */
     public get_pixel_data = (vid:HTMLVideoElement)=>{        
         const image = this.context.getImageData(0,0,this.xlim,this.ylim);
         const data = image.data;

@@ -1,3 +1,7 @@
+/**
+ * * The Vector library allows you to store data in a meaningful way.
+ * Todo: Optimize the recalib process
+ */
 class Vector{
     public x:number;
     public y:number;
@@ -9,7 +13,14 @@ class Vector{
     public unit_z:number;
     public unit_w:number;
     
-    constructor(x:number=0,y:number=0,z:number=0,w:number=0){
+    /**
+     * The Vector is a collection of components
+     * @param  {number=0} x
+     * @param  {number=0} y
+     * @param  {number=0} z
+     * @param  {number=0} w
+     */
+    constructor(x:number=0, y:number=0, z:number=0, w:number=0){
         this.x=x;
         this.y=y;
         this.z=z;
@@ -77,30 +88,51 @@ class Vector{
         this.w=val;
         this.recalib();
     }
+    
+    /**
+     * Sets X to a value and the rest of the components to 0
+     * @param  {number} val
+     */
     public set_x = (val:number)=>{
         this.x=val;
         this.y=0;
         this.z=0;
         this.w=0;
     }
+    /**
+     * Sets Y to a value and the rest of the components to 0
+     * @param  {number} val
+     */
     public set_y = (val:number)=>{
         this.x=0;
         this.y=val;
         this.z=0;
         this.w=0;
     }
+    /**
+     * Sets Z to a value and the rest of the components to 0
+     * @param  {number} val
+     */
     public set_z = (val:number)=>{
         this.x=0;
         this.y=0;
         this.z=val;
         this.w=0;
     }
+    /**
+     * Sets W to a value and the rest of the components to 0
+     * @param  {number} val
+     */
     public set_w = (val:number)=>{
         this.x=0;
         this.y=0;
         this.z=0;
         this.w=val;
     }
+    /**
+     * Checks for the highest value component and sets that to the providid value and the rest to 0
+     * @param  {number} val
+     */
     public maximize = (val:number)=>{
         if(this.x>this.y && this.x>this.z && this.x>this.w){
             this.set_x(val);
@@ -115,6 +147,10 @@ class Vector{
             this.set_w(val);
         }
     }
+    /**
+     * Checks for the lowest value component and sets that to the providid value and the rest to 0
+     * @param  {number} val
+     */
     public minimize = (val:number)=>{
         if(this.x<this.y && this.x<this.z && this.x<this.w){
             this.set_x(val);
